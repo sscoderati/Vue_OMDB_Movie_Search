@@ -15,7 +15,12 @@ watch(
 
 <template>
   <button
-    v-if="isMovieLeft && movieStore.maxPage"
+    v-if="
+      isMovieLeft &&
+      movieStore.maxPage &&
+      !movieStore.isLoading &&
+      movieStore.isNormal === 'True'
+    "
     class="btn add-more-movies"
     @click="movieStore.searchMovies(movieStore.page + 1)"
   >

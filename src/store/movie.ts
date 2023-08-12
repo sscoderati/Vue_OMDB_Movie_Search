@@ -21,6 +21,8 @@ export const useMovieStore = defineStore("movie", {
       movies,
       movie,
       isLoading: false,
+      isNormal: "",
+      message: "영문 제목의 영화를 검색해보세요!",
     };
   },
   actions: {
@@ -30,16 +32,27 @@ export const useMovieStore = defineStore("movie", {
       this.isLoading = true;
       if (page === 1) {
         this.movies = [];
+        this.message = "";
       }
-      const res = await fetch(
-        `https://www.omdbapi.com?apikey=7035c60c&s=${this.title}&page=${this.page}`,
-      );
-      const { Search, totalResults } = await res.json();
-      this.movies.push(...(Search as Movies));
-      if (!this.maxPage) {
-        this.maxPage = Math.ceil(Number(totalResults) / 10);
+      try {
+        const res = await fetch(
+          `https://www.omdbapi.com?apikey=7035c60c&s=${this.title}&page=${this.page}`,
+        );
+        const { Search, totalResults, Response, Error } = await res.json();
+        this.isNormal = Response;
+        if (Response === "True") {
+          this.movies.push(...(Search as Movies));
+          if (!this.maxPage) {
+            this.maxPage = Math.ceil(Number(totalResults) / 10);
+          }
+        } else {
+          this.message = Error;
+        }
+      } catch (err) {
+        console.log("something wrong with loading");
+      } finally {
+        this.isLoading = false;
       }
-      this.isLoading = false;
     },
   },
 });

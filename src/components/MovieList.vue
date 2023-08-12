@@ -6,21 +6,31 @@ import MovieItem from "./MovieItem.vue";
 const movieStore = useMovieStore();
 const moviesEl: Ref<HTMLElement[]> = ref([]);
 const loading = ref(false);
+const isMessage = ref(movieStore.message);
 watch(
   () => movieStore.isLoading,
   () => {
     loading.value = movieStore.isLoading;
   },
 );
+watch(
+  () => movieStore.message,
+  () => {
+    isMessage.value = movieStore.message;
+  },
+);
 </script>
 
 <template>
   <div class="movie-list">
-    <div class="movies">
+    <div v-if="isMessage" class="message">
+      {{ isMessage }}
+    </div>
+    <div v-else class="movies">
       <div
-        v-for="movie in movieStore.movies"
+        v-for="movie in movieStore?.movies"
         ref="moviesEl"
-        :key="movie.imdbID"
+        :key="movie?.imdbID"
       >
         <MovieItem v-bind="movie" />
       </div>
@@ -40,6 +50,11 @@ watch(
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+  }
+  .message {
+    color: $primary-color;
+    font-size: 20px;
+    text-align: center;
   }
 }
 .loader,
