@@ -1,18 +1,31 @@
-# Vue 3 + TypeScript + Vite
+## 📌 11주차 과제[Mission11]
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Vue.js와 영화 검색 API를 활용해 프로젝트를 만드세요.
 
-## Recommended IDE Setup
+## 필수 과제
+- 과제 기한
+   - 과제 수행 기간 : 2023년 8월 7일(월) ~ 2023년 8월 13일(일)
+   - 멘티 코드 리뷰 기간(방학 기간 종료 후) : 2023년 8월 14일(월) ~ 2023년 8월 15일(화)
+   - 멘토 코드 리뷰 기간(방학 기간 종료 후) : 2023년 8월 14일(월) ~ 2023년 8월 18일(금)
+   - 코드 리뷰 반영 기간 : 2023년 8월 21일(월) ~ 2023년 8월 22일(화)
+- 내용
+   - Vue.js와 영화 검색 API를 활용해 프로젝트를 만드세요.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### 기본 요구사항
 
-## Type Support For `.vue` Imports in TS
+- [X] 타입스크립트를 사용해야 합니다!
+- [X] 검색어를 입력해 영화를 검색할 수 있어야 합니다!
+- [X] 검색된 결과를 통해 영화의 상세 정보를 볼 수 있어야 합니다!
+- [X] 클라이언트(브라우저)에서 API Key(`7035c60c`)가 노출되지 않아야 합니다!
+- [X] 실제 서비스로 배포하고 접근 가능한 링크를 추가해야 합니다!
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+### 선택 요구사항
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+- [X] Vue Composition API를 사용해 보세요.
+- [X] API 요청(Request)에 대한 로딩 애니메이션을 추가해 보세요.
+- [X] 영화 상세 검색으로 출력할 영화 포스터를 더 높은 해상도 사용해 보세요.
+   - [X] 영화 포스터 주소에 포함된 `SX300`를 `SX700`과 같이 더 큰 숫자로 수정해 요청하세요.
+   - [X] 실시간으로 이미지의 크기를 다르게 요청하는 것이 어떤 원리로 가능한지 조사해 보세요.
+- [X] 요청 주소에 HTTP가 아닌 HTTPS 프로토콜을 사용해야 하는 이유를 조사해 보세요.
+- [X] Bootstrap, Tailwind 같은 UI 프레임워크를 사용하거나 혹은 직접 프로젝트를 예쁘게 만들어 보세요.
+- [X] Open Graph 혹은 Twitter Cards로 메타 정보를 제공해 보세요.
