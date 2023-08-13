@@ -54,7 +54,6 @@ export const useMovieStore = defineStore("movie", {
             page: this.page,
           }),
         });
-        console.log(res);
         const { Search, totalResults, Response, Error } = await res.json();
         this.isNormal = Response;
         if (Response === "True") {
