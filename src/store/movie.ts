@@ -6,8 +6,20 @@ export interface Movie {
   imdbID: string;
   Type: string;
   Poster: string;
+  Released: string;
+  Runtime: string;
+  Country: string;
+  Plot: string;
+  Ratings: Rating[];
+  Actors: string;
+  Director: string;
+  Production: string;
+  Genre: string;
 }
-
+type Rating = {
+  Source: string;
+  Value: string;
+};
 type Movies = Movie[];
 
 export const useMovieStore = defineStore("movie", {
@@ -41,7 +53,7 @@ export const useMovieStore = defineStore("movie", {
         const { Search, totalResults, Response, Error } = await res.json();
         this.isNormal = Response;
         if (Response === "True") {
-          this.movies.push(...(Search as Movies));
+          this.movies.push(...Search);
           if (!this.maxPage) {
             this.maxPage = Math.ceil(Number(totalResults) / 10);
           }
@@ -52,6 +64,19 @@ export const useMovieStore = defineStore("movie", {
         console.log("something wrong with loading");
       } finally {
         this.isLoading = false;
+      }
+    },
+    async getMovieDetails(id: string) {
+      if (this.isLoading) return;
+      this.isLoading = true;
+      try {
+        const res = await fetch(
+          `https://www.omdbapi.com?apikey=7035c60c&i=${id}&plot=full`,
+        );
+        this.movie = await res.json();
+        this.isLoading = false;
+      } catch (err) {
+        console.log("something wrong with loading");
       }
     },
   },
