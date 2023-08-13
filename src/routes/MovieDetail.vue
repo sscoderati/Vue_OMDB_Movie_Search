@@ -111,4 +111,23 @@ const routeEl = useRoute();
     margin-bottom: 20px;
   }
 }
+@media (max-width: 1200px) {
+  .the-movie {
+    gap: 30px;
+    .poster {
+      width: 300px;
+      height: 450px;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .the-movie {
+    display: block;
+    .title {
+      font-size: 50px;
+      margin-top: 50px;
+    }
+  }
+}
 </style>

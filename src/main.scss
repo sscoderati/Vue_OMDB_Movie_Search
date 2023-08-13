@@ -26,6 +26,17 @@ body {
     padding: 40px 0;
 }
 
+@media (max-width: 1200px) {
+    .container {
+        padding: 40px;
+    }
+}
+@media (max-width: 600px) {
+    .container {
+        padding: 40px 20px;
+    }
+}
+
 .btn {
     height: 50px;
     padding: 0 20px;
