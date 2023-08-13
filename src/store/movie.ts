@@ -16,7 +16,7 @@ export interface Movie {
   Production: string;
   Genre: string;
 }
-type Rating = {
+export type Rating = {
   Source: string;
   Value: string;
 };
