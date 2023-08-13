@@ -2,7 +2,7 @@
 import { useMovieStore } from "../store/movie.ts";
 
 const movieStore = useMovieStore();
-function loadMovies(event: MouseEvent | KeyboardEvent) {
+function loadMovies() {
   movieStore.searchMovies(1);
 }
 </script>
