@@ -2,6 +2,7 @@
 import { Movie, useMovieStore } from "../store/movie.ts";
 import { useRoute } from "vue-router";
 import { reactive } from "vue";
+import Skeleton from "../components/Skeleton.vue";
 
 const movieStore = useMovieStore();
 const movieDetail: Partial<Movie> = reactive({
@@ -31,7 +32,8 @@ const routeEl = useRoute();
 </script>
 
 <template>
-  <div class="the-movie container">
+  <Skeleton v-if="movieStore.isLoading" />
+  <div v-else class="the-movie container">
     <div
       class="poster"
       :style="{ backgroundImage: `url(${movieDetail.Poster})` }"
