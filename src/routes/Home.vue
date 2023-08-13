@@ -5,9 +5,11 @@ import AddMovies from "../components/AddMovies.vue";
 </script>
 
 <template>
-  <Search />
-  <MovieList />
-  <AddMovies />
+  <div class="container">
+    <Search />
+    <MovieList />
+    <AddMovies />
+  </div>
 </template>
 
 <style scoped></style>

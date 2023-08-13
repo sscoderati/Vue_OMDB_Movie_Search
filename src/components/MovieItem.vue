@@ -2,7 +2,7 @@
 import { Movie } from "../store/movie.ts";
 import { ref } from "vue";
 
-const movie = defineProps<Movie>();
+const movie = defineProps<Partial<Movie>>();
 const isInfoShown = ref(false);
 </script>
 
