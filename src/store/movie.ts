@@ -47,9 +47,14 @@ export const useMovieStore = defineStore("movie", {
         this.message = "";
       }
       try {
-        const res = await fetch(
-          `https://www.omdbapi.com?apikey=7035c60c&s=${this.title}&page=${this.page}`,
-        );
+        const res = await fetch("/api/movie", {
+          method: "POST",
+          body: JSON.stringify({
+            title: this.title,
+            page: this.page,
+          }),
+        });
+        console.log(res);
         const { Search, totalResults, Response, Error } = await res.json();
         this.isNormal = Response;
         if (Response === "True") {
@@ -70,9 +75,12 @@ export const useMovieStore = defineStore("movie", {
       if (this.isLoading) return;
       this.isLoading = true;
       try {
-        const res = await fetch(
-          `https://www.omdbapi.com?apikey=7035c60c&i=${id}&plot=full`,
-        );
+        const res = await fetch("/api/movie", {
+          method: "POST",
+          body: JSON.stringify({
+            id,
+          }),
+        });
         this.movie = await res.json();
         this.isLoading = false;
       } catch (err) {
