@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { useMovieStore } from "../store/movie.ts";
-import { ref, Ref, watch } from "vue";
+import { ref, watch } from "vue";
 import MovieItem from "./MovieItem.vue";
 
 const movieStore = useMovieStore();
-const moviesEl: Ref<HTMLElement[]> = ref([]);
 const loading = ref(false);
 const isMessage = ref(movieStore.message);
 watch(
@@ -27,11 +26,7 @@ watch(
       {{ isMessage }}
     </div>
     <div v-else class="movies">
-      <div
-        v-for="movie in movieStore?.movies"
-        ref="moviesEl"
-        :key="movie?.imdbID"
-      >
+      <div v-for="movie in movieStore.movies" :key="movie.imdbID">
         <MovieItem v-bind="movie" />
       </div>
     </div>
