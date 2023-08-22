@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useMovieStore } from "../store/movie.ts";
+import { loadMovies, useMovieStore } from "../store/movie.ts";
 import { ref, watch } from "vue";
 const movieStore = useMovieStore();
 const hasNextPage = ref(true);
@@ -22,9 +22,9 @@ watch(
 
 <template>
   <button
-    @click="movieStore.searchMovies(movieStore.page + 1)"
     v-if="isShowMoreBtnVisible()"
     class="btn show-more-movies"
+    @click="loadMovies(movieStore.page + 1)"
   >
     더 보기!
   </button>

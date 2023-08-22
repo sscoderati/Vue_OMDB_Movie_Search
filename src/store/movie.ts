@@ -88,3 +88,10 @@ export const useMovieStore = defineStore("movie", {
     },
   },
 });
+
+export function loadMovies(page: number) {
+  const store = useMovieStore();
+  store.searchMovies(page).catch((err) => {
+    console.error(err);
+  });
+}
