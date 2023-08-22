@@ -11,5 +11,3 @@ import AddMovies from "../components/AddMovies.vue";
     <AddMovies />
   </div>
 </template>
-
-<style scoped></style>
