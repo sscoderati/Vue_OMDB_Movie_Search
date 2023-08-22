@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { useMovieStore } from "../store/movie.ts";
+import { loadMovies, useMovieStore } from "../store/movie.ts";
 
 const movieStore = useMovieStore();
-function loadMovies() {
-  movieStore.searchMovies(1);
-}
 </script>
 
 <template>
@@ -12,9 +9,11 @@ function loadMovies() {
     <input
       v-model="movieStore.title"
       placeholder="영화의 제목을 입력해보세요!"
-      @keydown.enter="loadMovies"
+      @keydown.enter="loadMovies(1)"
     />
-    <button class="btn" @click="loadMovies">검색!</button>
+    <button v-if="!movieStore.isLoading" class="btn" @click="loadMovies(1)">
+      검색!
+    </button>
   </div>
 </template>
 

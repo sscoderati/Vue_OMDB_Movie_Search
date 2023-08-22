@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import Search from "../components/Search.vue";
+import SearchBar from "../components/SearchBar.vue";
 import MovieList from "../components/MovieList.vue";
 import AddMovies from "../components/AddMovies.vue";
 </script>
 
 <template>
   <div class="container">
-    <Search />
+    <SearchBar />
     <MovieList />
     <AddMovies />
   </div>
