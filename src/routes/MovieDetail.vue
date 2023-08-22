@@ -2,7 +2,7 @@
 import { Movie, Rating, useMovieStore } from "../store/movie.ts";
 import { useRoute } from "vue-router";
 import { reactive } from "vue";
-import Skeleton from "../components/Skeleton.vue";
+import Skeleton from "../components/MovieDetailSkeleton.vue";
 
 const movieStore = useMovieStore();
 const movieDetail: Partial<Movie> = reactive({
@@ -24,16 +24,16 @@ movieStore
   .getMovieDetails(routeEl.params.id as string)
   .then(() => {
     const { movie } = movieStore;
-    movieDetail.Title = movie.Title as string;
-    movieDetail.Released = movie.Released as string;
-    movieDetail.Runtime = movie.Runtime as string;
-    movieDetail.Country = movie.Country as string;
-    movieDetail.Plot = movie.Plot as string;
-    movieDetail.Ratings = movie.Ratings as Rating[];
-    movieDetail.Actors = movie.Actors as string;
-    movieDetail.Director = movie.Director as string;
-    movieDetail.Production = movie.Production as string;
-    movieDetail.Genre = movie.Genre as string;
+    for (const prop in movie) {
+      if (prop in movieDetail && prop !== "Poster") {
+        if (prop === "Ratings") {
+          movieDetail.Ratings = movie[prop] as Rating[];
+        } else {
+          movieDetail[prop as keyof Omit<Movie, "Ratings">] =
+            (movie[prop as keyof Movie] as string) ?? "";
+        }
+      }
+    }
 
     movieDetail.Poster =
       movieStore.movie.Poster?.replace("SX300", "SX700") ?? "";
